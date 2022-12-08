@@ -15,7 +15,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :handle_blank_field
     end
 
     def show
-        user = BnbUser.find_by(id: params[:user_id])
+        user = BnbUser.find_by(id: params[:id])
 
         if user
             render json: user, status: :ok

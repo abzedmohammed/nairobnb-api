@@ -6,7 +6,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :handle_blank_field
     end
 
     def show
-        bnb = BnbRoom.find_by(id: session[:bnb_id])
+        bnb = BnbRoom.find_by(id: params[:id])
 
         if bnb
             render json: bnb, status: :ok
