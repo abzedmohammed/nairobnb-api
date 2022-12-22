@@ -31,7 +31,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :handle_blank_field
             bnb.update(bnb_params)
             render json: bnb, status: :accepted
         else
-            render json: {error: "Bnb not found"}
+            render json: {error: "Bnb not found"}, status: :unprocessable_entity
         end
     end
 
@@ -42,7 +42,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :handle_blank_field
             head :no_content
             # render json: {error: "production not found"}
         else
-            render json: {error: "Bnb not found"}
+            render json: {error: "Bnb not found"}, status: :unprocessable_entity
         end
     end
     

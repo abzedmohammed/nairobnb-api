@@ -10,7 +10,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :handle_blank_field
         if user&.authenticate(params[:password])
             render json: user, status: :ok
         else
-            render json: {error: "Invalid username or password"}
+            render json: {error: "Invalid username or password"}, status: :unauthorized
         end
     end
 
@@ -40,7 +40,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :handle_blank_field
             user.update(user_params)
             render json: user, status: :accepted
         else
-            render json: {error: "user not found"}
+            render json: {error: "user not found"}, status: :unprocessable_entity
         end
     end
 
@@ -51,7 +51,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :handle_blank_field
             head :no_content
             # render json: {error: "production not found"}
         else
-            render json: {error: "User not found"}
+            render json: {error: "User not found"}, status: :unprocessable_entity
         end
     end
     
